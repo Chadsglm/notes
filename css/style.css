@@ -1,0 +1,74 @@
+form {
+    margin: 0 auto;
+    width: 500px;
+    padding: 1em;
+}
+
+form div + div {
+    margin-top: 1em;
+}
+
+label {
+    display: inline-block;
+    width: 195px;
+    text-align: left;
+}
+
+input, textarea {
+    font: 1em sans-serif;
+    width: 300px;
+    box-sizing: border-box;
+    border: 1px solid #999;
+}
+
+textarea {
+    vertical-align: top;
+    height: 5em;
+}
+
+.dot {
+    height: 12px;
+    width: 12px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.container {
+    border: 3px solid #f1f1f1;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    width: 700px;
+    height: 400px;
+}
+
+.top {
+    padding: 10px;
+    background: #f1f1f1;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.save {
+    width: 500px;
+    box-shadow: 2px 3px #888888;
+}
+
+.cancel{
+    width: 100px;
+    left: 400px;
+    position: relative;
+    box-shadow: 2px 3px #888888;
+
+}
+
+.deactive {
+    color: gray;
+}
+.active {
+    color: black;
+}
+
+.date {
+
+}
