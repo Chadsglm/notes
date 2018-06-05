@@ -4,67 +4,61 @@
     <meta charset="UTF-8">
     <title>Note Pro</title>
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
-          integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
-          crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/modal.css">
 
-    <script src="./js/index.js"></script>
-
-
-</head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <body>
-    <div>
-        <div>
-            <div class="header">
-                <button type="button" id="newCreate">Create new note</button>
+    <div class="wrapper">
+        <div class="header">
 
-                <select id="style-selector">
-                    <option value="black-white">Black & white Style</option>
-                    <option value="colored">Color Style</option>
-                </select>
-            </div>
+            <button type="button" class="newCreate" id="newCreate">Create new note</button>
+
+            <select class="styleSelector" id="styleSelector">
+                <option value="white">Black & White Style</option>
+                <option value="darkseagreen ">Color Style</option>
+            </select>
         </div>
 
-        <div>
-            <nav>
-                <div class="button-group">
-                    <button type="button">By finish Date</button>
-                    <button type="button">By created Date</button>
-                    <button type="button">By importance</button>
+        <div >
+            <nav class="topNav">
+                <button id="button1">By finish Date</button>
+                <button id="button2">By created Date</button>
+                <button id="button3">By importance</button>
 
-                    <button type="button">Show finished</button>
-                </div>
+                <button id="button4">Show finished</button>
             </nav>
         </div>
 
-        <div>
-            <div class="note-container">
-                <div class="note-date">Nächsten Mittwoch</div>
-                <div class="note-header">
-                    <div class="note-title">CAS FEE Selbststudium / Projekt Aufgabe erledigen</div>
-                    <div class="note-importance">
-                        <i class="fas fa-bolt fa-fw active" aria-label="Very low importance"></i>
-                        <i class="fas fa-bolt fa-fw active" aria-label="Low importance"></i>
-                    </div>
-                </div>
-                <div class="note-date">
-                    <input id="note-finished" type="checkbox" />
-                    <label for="note-finished">Finished<span> [today]</span></label>
-                </div>
-                <div class="note-description">
-                    <div>
-                        HTML für die Note App erstellen.<br />
-                        CSS erstellen für die Note App.<br />
-                        mehr[...]
-                    </div>
-                    <button type="button"><i class="fas fa-angle-down"></i></button>
-                </div>
-                <div class="note-actions">
-                    <button>Edit</button>
-                </div>
+
+        <div class="content">
+            <div class="noteDate">Nächsten Mittwoch</div>
+
+            <div class="noteTitle">CAS FEE Selbststudium / Projekt Aufgabe erledigen</div>
+
+            <div class="noteImportance">
+                <i class="fas fa-bolt fa-fw active" aria-label="Very low importance"></i>
+                <i class="fas fa-bolt fa-fw active" aria-label="Low importance"></i>
+            </div>
+
+            <div class="noteDates">
+                <input id="finishedNote" type="checkbox"  value="finishedNote"/>
+                <label for="finishedNote">Finished</label>
+            </div>
+
+            <div class="declaration" id="declaration">
+                <details>
+                    <ul></ul>
+                </details>
+
+            </div>
+
+            <div class="noteEdit">
+                <button id="noteEdit">Edit</button>
             </div>
         </div>
-
+        <hr>
     </div>
 
 
@@ -75,36 +69,37 @@
         <div class="container">
 
             <div class="top">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot">&times;</span>
+                <span class="dot1"></span>
+                <span class="dot2"></span>
+                <span class="dot3"></span>
             </div>
 
-            <div class="content">
-                <form>
+            <div class="modelContent">
+                <form id="modelContent">
 
                     <div>
-                        <label>Title</label>
+                        <label id="model-label">Title</label>
                         <input id="title" type="text" placeholder="Write to Your Note Title">
                     </div>
 
                     <div >
-                        <label>Beschreibung</label>
-                        <textarea id="textArea"></textarea>
+                        <label id="model-label">Beschreibung</label>
+                        <textarea id="decleration" rows="4" cols="50" placeholder="Write to Your Note"></textarea>
                     </div>
 
                     <div>
-                        <label>Wichtigkeit</label>
-                        <i class="fas fa-bolt fa-fw active" aria-label="Very low importance"></i>
-                        <i class="fas fa-bolt fa-fw active" aria-label="Low importance"></i>
+                        <label id="model-label">Wichtigkeit</label>
+                        <i class="fas fa-bolt fa-fw deactive" aria-label="Very low importance"></i>
+                        <i class="fas fa-bolt fa-fw deactive" aria-label="Low importance"></i>
                         <i class="fas fa-bolt fa-fw deactive" aria-label="Normal importance"></i>
                         <i class="fas fa-bolt fa-fw deactive" aria-label="High importance"></i>
                         <i class="fas fa-bolt fa-fw deactive" aria-label="Very high importance"></i>
                     </div>
 
                     <div >
-                        <label>Erledigt bis</label>
+                        <label id="model-label">Erledigt bis</label>
                         <input id="date" type="date">
+                        <!-- <a id="dateLogo" class="far fa-calendar-alt"></a> -->
                     </div>
 
                     <div>
@@ -112,6 +107,8 @@
                     </div>
 
                     <div>
+                        <button class="back">Back</button>
+
                         <button class="cancel">Cancel</button>
                     </div>
                 </form>
@@ -120,6 +117,9 @@
         </div>
 
     </div>
+
+    <script src="./js/index.js"></script>
+    <script src="./js/modal.js"></script>
 </body>
 
 </html>
