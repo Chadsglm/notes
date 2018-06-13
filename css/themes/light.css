@@ -1,0 +1,11 @@
+.light{
+    background: lightskyblue;
+    width: 100%;
+    height: calc(100vh);
+    margin: 0px 0px;
+    padding: 0px 0px;
+}
+
+.light .container{
+    background: lightblue;
+}

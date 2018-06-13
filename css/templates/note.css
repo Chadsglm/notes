@@ -1,0 +1,86 @@
+body{
+    font-family: Calibri;
+    font-size: 16px;
+    margin: 0 0;
+}
+
+.wrapper{
+    width: 100%;
+    height: calc(100vh);
+    margin: 0px 0px;
+    padding: 0px 0px;
+
+}
+
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+details{
+    border: 1px solid #000;
+    border-radius: 5px;
+
+}
+.header{
+    display: grid;
+    grid-gap: 1em;
+    margin-bottom: 30px;
+    grid-template: repeat(1, 1fr) / repeat(4, 1fr);
+}
+
+.topNav{
+    display: grid;
+    grid-gap: 1em;
+    grid-template: repeat(1, 1fr) / repeat(4, 1fr);
+    padding: 10px 0 30px 0;
+}
+
+.content{
+    display: grid;
+    grid-gap: 2px;
+    grid-template:  repeat(1, 1fr) / repeat(4, 1fr);
+    border-bottom: 1px solid #000;
+    padding-bottom: 15px;
+    margin-top: 25px;
+    border-radius: 5px;
+}
+
+.noteImportance{
+    width: 120px;
+}
+
+.noteDates {
+    grid-column:1;
+    grid-row: 2;
+    width: 200px;
+}
+
+textarea {
+    grid-column:2;
+    grid-row: 2;
+    border: black solid 1px;
+    border-radius: 5px;
+    width: 300px;
+    height: auto;
+    box-sizing: border-box;
+}
+
+.noteTitle{
+    width: 350px;
+    height: 40px;
+}
+
+.noteEdit{
+    grid-column: 4;
+    grid-row: 1 / 3;
+    width: 100px;
+}
+
+#noteEdit{
+    width: 80px;
+    height: 50px;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 15px;
+}

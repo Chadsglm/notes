@@ -3,14 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Note Pro</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/modal.css">
-
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<body>
-    <div class="wrapper">
+    <link rel="stylesheet" href="./css/style.css">
+<body class="">
+<div class="wrapper dark">
+    <div class="container">
         <div class="header">
 
             <button type="button" class="newCreate" id="newCreate">Create new note</button>
@@ -21,105 +18,31 @@
             </select>
         </div>
 
-        <div >
-            <nav class="topNav">
-                <button id="button1">By finish Date</button>
-                <button id="button2">By created Date</button>
-                <button id="button3">By importance</button>
+        <nav class="topNav">
+            <button id="sortByFinishedDate">By finish Date</button>
+            <button id="sortByCreatedDate">By created Date</button>
+            <button id="sortByImportance">By importance</button>
 
-                <button id="button4">Show finished</button>
-            </nav>
-        </div>
-
-
-        <div class="content">
-            <div class="noteDate">Nächsten Mittwoch</div>
-
-            <div class="noteTitle">CAS FEE Selbststudium / Projekt Aufgabe erledigen</div>
-
-            <div class="noteImportance">
-                <i class="fas fa-bolt fa-fw active" aria-label="Very low importance"></i>
-                <i class="fas fa-bolt fa-fw active" aria-label="Low importance"></i>
-            </div>
-
-            <div class="noteDates">
-                <input id="finishedNote" type="checkbox"  value="finishedNote"/>
-                <label for="finishedNote">Finished</label>
-            </div>
-
-            <div class="declaration" id="declaration">
-                <details>
-                    <ul></ul>
-                </details>
-
-            </div>
-
-            <div class="noteEdit">
-                <button id="noteEdit">Edit</button>
-            </div>
-        </div>
+            <button id="showFinished">Show finished</button>
+        </nav>
         <hr>
-    </div>
 
-
-    <!-- The Modal Dialog -->
-    <div id="modalDialog" class="modal">
-
-        <!-- Modal content -->
-        <div class="container">
-
-            <div class="top">
-                <span class="dot1"></span>
-                <span class="dot2"></span>
-                <span class="dot3"></span>
-            </div>
-
-            <div class="modelContent">
-                <form id="modelContent">
-
-                    <div>
-                        <label id="model-label">Title</label>
-                        <input id="title" type="text" placeholder="Write to Your Note Title">
-                    </div>
-
-                    <div >
-                        <label id="model-label">Beschreibung</label>
-                        <textarea id="decleration" rows="4" cols="50" placeholder="Write to Your Note"></textarea>
-                    </div>
-
-                    <div>
-                        <label id="model-label">Wichtigkeit</label>
-                        <i class="fas fa-bolt fa-fw deactive" aria-label="Very low importance"></i>
-                        <i class="fas fa-bolt fa-fw deactive" aria-label="Low importance"></i>
-                        <i class="fas fa-bolt fa-fw deactive" aria-label="Normal importance"></i>
-                        <i class="fas fa-bolt fa-fw deactive" aria-label="High importance"></i>
-                        <i class="fas fa-bolt fa-fw deactive" aria-label="Very high importance"></i>
-                    </div>
-
-                    <div >
-                        <label id="model-label">Erledigt bis</label>
-                        <input id="date" type="date">
-                        <!-- <a id="dateLogo" class="far fa-calendar-alt"></a> -->
-                    </div>
-
-                    <div>
-                        <button class="save">Spreichern</button>
-                    </div>
-
-                    <div>
-                        <button class="back">Back</button>
-
-                        <button class="cancel">Cancel</button>
-                    </div>
-                </form>
-            </div>
-
-        </div>
+        <div class="view-notes-area" id="listContainer"></div>
 
     </div>
 
-    <script src="./js/index.js"></script>
-    <script src="./js/modal.js"></script>
+    <div class="modal" id="modalContainer"> </div>
+
+    <script src="js/templates/mainView.js"></script>
+    <script src="js/templates/editView.js"></script>
+
+    <script src="js/vendor/handlebars-v4.0.11.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"></script>
+    <script src="js/controller/handlebar.js"></script>
+    <script src="js/controller/shared.js"></script>
+    <script src="js/model/noteStorageHelper.js"></script>
+    <script src="js/controller/main.js"></script>
+    <script src="js/controller/edit.js"></script>
+</div>
 </body>
-
 </html>
