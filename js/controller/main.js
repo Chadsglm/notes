@@ -58,13 +58,22 @@ function delegatedMainViewEditClick(event){
 
     event.stopPropagation();
   }
+  if(event.target.classList.contains("finishedNote")){
+    isFinished(event.target);
+  }
 }
 
 function openModal(e) {
-
   refreshModal({});
 }
 
+function isFinished (target){
+  console.log("burada", target.id);
+  let note = GetNoteById(target.id);
+  note.isFinished = !note.isFinished;
+  UpdateNote(note);
+  main();
+}
 
 
 

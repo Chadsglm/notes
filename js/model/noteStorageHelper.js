@@ -61,10 +61,8 @@ function AddNote(note){
 function UpdateNote(note){
     noteStorage = getLocalStorageItem('notes') || [];
     let index = noteStorage.findIndex(noteElm => noteElm.id == note.id);
-    if(index) {
-      noteStorage[index] = note;
-      saveToLocalStorage('notes', noteStorage);
-    }
+    noteStorage[index] = note;
+    saveToLocalStorage('notes', noteStorage);
 }
 
 function GetNoteById(id){

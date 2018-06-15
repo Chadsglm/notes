@@ -11,16 +11,6 @@
     transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
 }
 
-.container {
-    position: absolute;
-    top: 25%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    border-radius: 0.5rem;
-    border: 2px solid #f1f1f1;
-}
-
 .dot1 {
     height: 12px;
     width: 12px;

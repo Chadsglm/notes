@@ -17,18 +17,17 @@ const editTemplate = `
           
               <div>
                 <label class="model-label">Beschreibung</label>
-                <textarea required id="add-description" rows="4" cols="50" 
-                          placeholder="Write to Your Note">{{description}}
+                <textarea required id="add-description" rows="4" cols="50" placeholder="Write to Your Note">{{description}}
                 </textarea>
               </div>
   
               <div class="stars" data-rating="3">
                 <label class="model-label" id="importance">Wichtigkeit</label>
-                <span class="star">&nbsp;{{importance}}</span>
-                <span class="star">&nbsp;{{importance}}</span>
-                <span class="star">&nbsp;{{importance}}</span>
-                <span class="star">&nbsp;{{importance}}</span>
-                <span class="star">&nbsp;{{importance}}</span>
+                <span class="star editStar"></span>
+                <span class="star editStar"></span>
+                <span class="star editStar"></span>
+                <span class="star editStar"></span>
+                <span class="star editStar"></span>
               </div>
                 
               <div>
@@ -37,7 +36,7 @@ const editTemplate = `
               </div>
           
               <div>
-                <button class="cancel">Cancel</button>
+                <button class="cancel" id="cancelModal">Cancel</button>
                 
                 <button type="button" id="saveButton" class="save saveButton">Spreichern</button>
               </div>

@@ -1,19 +1,28 @@
 function delegatedEditViewEditClick(event){
+  event.stopPropagation();
   if(event.target.classList.contains("saveButton")) {
     let note = extractNote();
 
     if(GetNoteById(note.id) ){
-      UpdateNote(note)
+      UpdateNote(note);
     }
     else {
       AddNote(note);
     }
-
-    event.stopPropagation();
+    refreshModal({});
+    main();
+  }
+  if(event.target.id == "cancelModal") {
+    const modal = findByClass('modal');
+    modal.classList.toggle("show-modal");
   }
 }
 
 function extractNote(){
+    let importance = findByClass('stars');
+    importance =  importance ? importance.dataset.rating : 3;
+    let selectedStars = [false, false, false, false, false];
+    selectedStars = selectedStars.map((item , i ) => (i+1 <= parseInt(importance)) ? true : false );
 
     let note = {
       id: findById('id').value || new Date().getTime(),
@@ -22,7 +31,7 @@ function extractNote(){
       finishedDate: new Date(),
       isFinished: false,
       title: findById('title').value,
-      importance: findById('importance').value,
+      importance: selectedStars,
       description: findById('add-description').value
     }
   return note;
@@ -35,40 +44,42 @@ function refreshModal(note) {
 
   // add rendered html to the dom
   setHtml(".modal", renderedListHtml);
-  findByClass('modal').classList.toggle("show-modal");
+  const modal = findByClass('modal');
+  modal.classList.toggle("show-modal");
+  if(modal.classList.contains("show-modal")) {
+    starRating();
+  }
 }
-
 
 function  starRating () {
-  function addListeners() {
-    var stars = document.querySelectorAll('.star');
-    [].forEach.call(stars, function(star, index) {
-      star.addEventListener('click', (function(idx) {
-        console.log('adding rating on', index);
-        document.querySelector('.stars').setAttribute('data-rating', idx + 1);
-        console.log('Rating is now', idx + 1);
-        setRating();
-      }).bind(window, index));
-    });
-
-  }
-
-  function setRating() {
-    var stars = document.querySelectorAll('.star');
-    var rating = parseInt(
-        document.querySelector('.stars').getAttribute('data-rating'));
-    [].forEach.call(stars, function(star, index) {
-      if (rating > index) {
-        star.classList.add('rated');
-        console.log('added rated on', index);
-      } else {
-        star.classList.remove('rated');
-        console.log('removed rated on', index);
-      }
-    });
-  }
+  addListeners();
+  setRating();
 }
 
+function addListeners() {
+  let stars = document.querySelectorAll('.editStar');
+  [].forEach.call(stars, function(star, index) {
+
+    star.addEventListener('click', (function(idx) {
+      document.querySelector('.stars').setAttribute('data-rating', ++idx);
+      setRating();
+    }).bind(window, index));
+  });
+
+}
+
+function setRating() {
+  var stars = document.querySelectorAll('.editStar');
+  var rating = parseInt(
+      document.querySelector('.stars').getAttribute('data-rating'));
+  [].forEach.call(stars, function(star, index) {
+    if (rating > index) {
+      star.classList.add('rated');
+    } else {
+      star.classList.remove('rated');
+    }
+  });
+}
 
 // dom.ready
 addEventHandler(document, "DOMContentLoaded", function(event) {

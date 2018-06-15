@@ -10,16 +10,23 @@ const mainTemplate = `
             <div class="noteTitle">{{title}}</div>
             
             <div class="noteImportance">
-              <span class="star">&nbsp;</span>
-              <span class="star">&nbsp;</span>
-              <span class="star">&nbsp;</span>
-              <span class="star">&nbsp;</span>
-              <span class="star">&nbsp;</span>
+            {{#each importance}}
+              {{#if this}}
+                <span class="star rated" >&nbsp;</span>
+                {{else}}
+                <span class="star">&nbsp;</span>
+              {{/if}} 
+              {{/each}}
             </div>
             
             <div class="noteDates">
                 <label for="finishedNote">Finished</label>
-                <input id="finishedNote" type="checkbox" value="finishedNote"/>
+                {{#if isFinished}} 
+                  <input class="finishedNote" id="{{id}}" type="checkbox" checked="checked" />
+                {{else}}
+                  <input class="finishedNote" id="{{id}}" type="checkbox" />
+                {{/if}} 
+               
             </div>
             
             <div class="declaration" id="declaration">
