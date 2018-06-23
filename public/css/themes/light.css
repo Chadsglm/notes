@@ -1,0 +1,11 @@
+.light{
+    background-image: url(https://www.wallpaperup.com/uploads/wallpapers/2013/12/15/196208/db243fd17963767a512cc1b1e56ed8f9-1400.jpg);
+    width: 100%;
+    height: calc(100vh);
+    margin: 0px 0px;
+    padding: 0px 0px;
+}
+
+.light .container{
+    background: lightblue;
+}
