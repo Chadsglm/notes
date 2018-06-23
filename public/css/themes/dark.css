@@ -1,0 +1,11 @@
+.dark{
+    background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/northernlights.jpg);
+    height: 100vh;
+    width: 100%;
+    margin: 0px 0px;
+    padding: 0px 0px;
+}
+
+.dark .container{
+    background: darkgray;
+}

@@ -1,0 +1,53 @@
+#newCreate {
+    grid-column:1;
+    width: 130px;
+    height: 30px;
+    box-shadow: 1px 2px #888888;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+#styleSelector {
+    grid-column:4;
+    width: 130px;
+    height: 30px;
+    margin-left: auto;
+    margin-top: 5px;
+}
+
+#sortByFinishedDate {
+    grid-column:1;
+    width: 130px;
+    height: 30px;
+    box-shadow: 1px 2px #888888;
+    border-radius: 5px;
+}
+
+#sortByCreatedDate {
+    grid-column:2;
+    width: 130px;
+    height: 30px;
+    box-shadow: 1px 2px #888888;
+    border-radius: 5px;
+}
+
+#sortByImportance {
+    grid-column:3;
+    width: 130px;
+    height: 30px;
+    box-shadow: 1px 2px #888888;
+    border-radius: 5px;
+}
+
+#showFinished {
+    grid-column:4;
+    width: 130px;
+    height: 30px;
+    margin-left: auto;
+    box-shadow: 1px 2px #888888;
+    border-radius: 5px;
+}
+
+button:hover{
+    background-color: gray;
+}
