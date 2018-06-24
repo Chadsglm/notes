@@ -3,14 +3,24 @@ function delegatedEditViewEditClick(event){
   if(event.target.classList.contains("saveButton")) {
     let note = extractNote();
 
-    if(GetNoteById(note.id) ){
-      UpdateNote(note);
-    }
-    else {
-      AddNote(note);
-    }
-    refreshModal({});
-    main();
+    let rest = new RestClient();
+    rest.getNoteById(note.id)
+        .then(noteItem => {
+          if(noteItem && noteItem.id){
+            rest.updateNote(note)
+                .then(() => {
+                  refreshModal({});
+                  main();
+                })
+          }
+          else {
+            rest.addNote(note)
+                .then(() => {
+                  refreshModal({});
+                  main();
+                })
+          }
+        })
   }
   if(event.target.id == "cancelModal") {
     const modal = findByClass('modal');
@@ -83,7 +93,5 @@ function setRating() {
 
 // dom.ready
 addEventHandler(document, "DOMContentLoaded", function(event) {
-
   addEventHandler(findById("modalContainer"), "click", delegatedEditViewEditClick);
-
 });

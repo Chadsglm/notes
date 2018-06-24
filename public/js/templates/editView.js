@@ -9,7 +9,7 @@ const editTemplate = `
     
         <div class="modelContent">
             <form id="modelContent">
-              <input type="hidden" id="id" value="{{id}}">
+              <input type="hidden" id="id" value="{{_id}}">
               <div>
                 <label class="model-label">Title</label>
                 <input required id="title" value="{{title}}" placeholder="Write to Your Note Title">

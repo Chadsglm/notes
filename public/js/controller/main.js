@@ -14,25 +14,47 @@ function refreshListView(listOfNotes){
   setHtml(".view-notes-area", renderedListHtml);
 }
 
+
+function filterNotes(list, orderBy, filterBy){
+  return list
+          .filter(filterBy)
+          .sort(orderBy);
+}
+
 function sortByFinishedDate(){
-  let listOfNotes = GetNotes((a, b)=>a.finishedDate > b.finishedDate, a=>true);
-  refreshListView(listOfNotes.reverse());
-  let byFinishdateSorting = 1;
+  return new RestClient()
+                .getAllNote()
+                .then(list => {
+                   let listOfNotes = filterNotes(list, (a, b)=>a.finishedDate > b.finishedDate, a=>true);
+                   refreshListView(listOfNotes.reverse());
+                });
 }
 
 function sortByCreatedDate(){
-  let listOfNotes = GetNotes((a,b)=>a.createDate>b.createDate, a=>true);
-  refreshListView(listOfNotes);
+  return new RestClient()
+              .getAllNote()
+              .then(list => {
+                let listOfNotes = filterNotes(list, (a,b)=>a.createDate>b.createDate, a=>true);
+                refreshListView(listOfNotes.reverse());
+              });
 }
 
 function sortByImportance(){
-  let listOfNotes = GetNotes((a,b)=>a.importance>b.importance, a=>true);
-  refreshListView(listOfNotes);
+  return new RestClient()
+              .getAllNote()
+              .then(list => {
+                let listOfNotes = filterNotes(list, (a,b)=>a.importance>b.importance, a=>true);
+                refreshListView(listOfNotes.reverse());
+              });
 }
 
 function showFinished(){
-  let listOfNotes = GetNotes((a,b)=>a.createDate>b.createDate, a=>a.isFinished);
-  refreshListView(listOfNotes);
+  return new RestClient()
+              .getAllNote()
+              .then(list => {
+                let listOfNotes = filterNotes(list, (a,b)=>a.createDate>b.createDate, a=>a.isFinished);
+                refreshListView(listOfNotes.reverse());
+              });
 }
 
 function switchStyle(){
@@ -50,14 +72,22 @@ function switchStyle(){
 }
 
 function delegatedMainViewEditClick(event){
+  event.stopPropagation();
   if(event.target.classList.contains("edit_item")) {
     // get the id form data attribute
-    let id = +event.target.dataset.id;
+    let id = event.target.dataset["id"];
     // find the note from model
-    let note = GetNoteById(id);
-    refreshModal(note);
-
-    event.stopPropagation();
+    new RestClient()
+          .getNoteById(id)
+          .then(noteItem => refreshModal(noteItem))
+  }
+  if(event.target.classList.contains("delete_item")) {
+    // get the id form data attribute
+    let id = event.target.dataset["id"];
+    // find the note from model
+    new RestClient()
+          .deleteNote(id)
+          .then(() => main())
   }
   if(event.target.classList.contains("finishedNote")){
     isFinished(event.target);
@@ -69,24 +99,28 @@ function openModal(e) {
 }
 
 function isFinished (target){
-  console.log("burada", target.id);
-  let note = GetNoteById(target.id);
-  note.isFinished = !note.isFinished;
-  UpdateNote(note);
-  main();
+  let id = event.target.dataset["id"];
+  let rest = new RestClient();
+  rest
+      .getNoteById(id)
+      .then(noteItem => {
+        noteItem.id = id;
+        noteItem.isFinished = !noteItem.isFinished;
+        rest
+          .updateNote(noteItem)
+          .then( () => main());
+      })
 }
 
 
 
 addEventHandler(document, "DOMContentLoaded", function(event) {
-
   addEventHandler(findById("sortByFinishedDate"), "click", sortByFinishedDate);
   addEventHandler(findById("sortByCreatedDate"),  "click", sortByCreatedDate);
   addEventHandler(findById("sortByImportance"),   "click", sortByImportance);
   addEventHandler(findById("showFinished"),       "click", showFinished);
   addEventHandler(findById("styleSelector"),      "change", switchStyle);
   addEventHandler(findById("newCreate"),          "click", openModal);
-
 
   addEventHandler(findById("listContainer"),     "click", delegatedMainViewEditClick);
 

@@ -13,7 +13,7 @@ const addNote = (note, callback) => {
 
 const updateNote = (note, callback) => {
   db.update({
-    _id:note._id
+    _id:note.id
   }, note, {}, (err, newNote) => {
     resolver(err, callback, newNote);
   });

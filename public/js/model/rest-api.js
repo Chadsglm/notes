@@ -1,35 +1,50 @@
-const url = '/note';
+class RestClient {
 
+  constructor(url = '/note'){
+    this.url= url;
+  }
 
-fetch(url)
-.then((res) => {
-  console.log(res)
-  return res.json();
-})
-.then((myJson) => {
-  console.log(myJson);
-})
-.catch((error) => {
-  throw Error(error);
-});
+  async getAllNote() {
+    let response = await fetch(this.url);
+    let data = await response.json()
 
+    return data.data;
+  }
 
-function getAllNote() {
-  return fetch(url);
+  async getNoteById(id) {
+    let response = await fetch(this.url + '/' + id);
+    let data = await response.json()
+
+    return data.data;
+  }
+
+  async  addNote(note) {
+    return await fetch(this.url, {
+      body: JSON.stringify(note),
+      headers: {
+        'content-type': 'application/json'
+      },
+      method: 'POST'
+    })
+    .then(response => response.json())
+  }
+
+  async updateNote(note){
+    return await fetch(this.url + '/' + note.id, {
+      body: JSON.stringify(note),
+      headers: {
+        'content-type': 'application/json'
+      },
+      method: 'PUT'
+    })
+    .then(response => response.json())
+  }
+
+  async deleteNote(id) {
+    return await fetch(this.url + '/' + id, {
+      method: 'DELETE'
+    })
+    .then(response => response.json())
+  }
 }
 
-function getNoteById(id) {
-
-}
-
-function AddNote(note) {
-
-}
-
-function UpdateNote(note){
-
-}
-
-function DeleteNote(note) {
-
-}

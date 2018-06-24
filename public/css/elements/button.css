@@ -48,6 +48,34 @@
     border-radius: 5px;
 }
 
-button:hover{
-    background-color: gray;
+.active, #sortByFinishedDate:hover, #sortByCreatedDate:hover, #sortByImportance:hover, #showFinished:hover{
+    background-color: darkgray;
+    color: white;
 }
+
+#noteEdit{
+    width: 80px;
+    height: 50px;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+#deleteEdit {
+    width: 80px;
+    height: 30px;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+#deleteEdit:hover{
+    background-color: red;
+    color: white;
+}
+
+button:hover{
+    background-color: darkgray;
+    color: white;
+}
+

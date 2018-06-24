@@ -1,5 +1,6 @@
 const mainTemplate = `
     <div>
+        <div class="showDataCounter"></div>
         {{#each list}}
         <div class="content">
         
@@ -22,9 +23,9 @@ const mainTemplate = `
             <div class="noteDates">
                 <label for="finishedNote">Finished</label>
                 {{#if isFinished}} 
-                  <input class="finishedNote" id="{{id}}" type="checkbox" checked="checked" />
+                  <input class="finishedNote" data-id="{{_id}}" type="checkbox" checked="checked" />
                 {{else}}
-                  <input class="finishedNote" id="{{id}}" type="checkbox" />
+                  <input class="finishedNote" data-id="{{_id}}" type="checkbox" />
                 {{/if}} 
                
             </div>
@@ -36,8 +37,8 @@ const mainTemplate = `
             </div>
             
             <div class="noteEdit">
-                <button class="edit_item" id="noteEdit" data-id="{{id}}">Edit</button>
-                <button class="delete_item" id="deleteEdit" data-id="{{id}}">Delete</button>
+                <button class="edit_item" id="noteEdit" data-id="{{_id}}">Edit</button>
+                <button class="delete_item" id="deleteEdit" data-id="{{_id}}">Delete</button>
             </div>
         </div>
         {{/each}}
