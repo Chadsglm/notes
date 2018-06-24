@@ -1,5 +1,5 @@
 "use strict";
-
+s
 function addEventHandler(domElement, eventName, handlerFunction) {
   domElement.addEventListener(eventName, handlerFunction);
 }

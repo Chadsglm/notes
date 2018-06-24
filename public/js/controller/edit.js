@@ -4,9 +4,9 @@ function delegatedEditViewEditClick(event){
     let note = extractNote();
 
     let rest = new RestClient();
-    rest.getNoteById(note.id)
+    rest.getNoteById(note._id)
         .then(noteItem => {
-          if(noteItem && noteItem.id){
+          if(noteItem && noteItem._id){
             rest.updateNote(note)
                 .then(() => {
                   refreshModal({});
@@ -34,16 +34,16 @@ function extractNote(){
     let selectedStars = [false, false, false, false, false];
     selectedStars = selectedStars.map((item , i ) => (i+1 <= parseInt(importance)) ? true : false );
 
-    let note = {
-      id: findById('id').value || new Date().getTime(),
-      createDate: new Date(),
-      plannedDate: new Date(findById('date').value),
-      finishedDate: new Date(),
-      isFinished: false,
-      title: findById('title').value,
-      importance: selectedStars,
-      description: findById('add-description').value
-    }
+    let note = new Note(
+        findById('id').value || new Date().getTime(),
+        findById('title').value,
+        findById('add-description').value,
+        new Date(),
+        new Date(findById('date').value),
+        new Date(),
+        selectedStars,
+        false
+    )
   return note;
 }
 

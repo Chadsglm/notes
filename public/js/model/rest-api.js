@@ -30,7 +30,7 @@ class RestClient {
   }
 
   async updateNote(note){
-    return await fetch(this.url + '/' + note.id, {
+    return await fetch(this.url + '/' + note._id, {
       body: JSON.stringify(note),
       headers: {
         'content-type': 'application/json'

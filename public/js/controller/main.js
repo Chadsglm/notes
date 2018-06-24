@@ -1,7 +1,8 @@
 "use strict";
 
 function main(){
-  sortByCreatedDate();
+  setInterval(sortByCreatedDate, 1000);
+  // sortByCreatedDate();
 }
 
 function refreshListView(listOfNotes){
@@ -111,7 +112,6 @@ function isFinished (target){
           .then( () => main());
       })
 }
-
 
 
 addEventHandler(document, "DOMContentLoaded", function(event) {

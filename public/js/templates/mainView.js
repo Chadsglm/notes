@@ -1,6 +1,6 @@
 const mainTemplate = `
     <div>
-        <div class="showDataCounter"></div>
+        <span class="count">Count of List: {{list.length}}</span>
         {{#each list}}
         <div class="content">
         
@@ -26,8 +26,7 @@ const mainTemplate = `
                   <input class="finishedNote" data-id="{{_id}}" type="checkbox" checked="checked" />
                 {{else}}
                   <input class="finishedNote" data-id="{{_id}}" type="checkbox" />
-                {{/if}} 
-               
+                {{/if}}
             </div>
             
             <div class="declaration" id="declaration">

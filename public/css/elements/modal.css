@@ -35,6 +35,16 @@
     display: inline-block;
 }
 
+.container{
+    border-radius: 12px;
+    border: 1px solid #f1f1f1;
+    position: absolute;
+    left: 30%;
+    top: 30%;
+    margin-top: -150px;
+    min-width: 500px;
+}
+
 .show-modal {
     opacity: 1;
     visibility: visible;
@@ -44,8 +54,9 @@
 
 
 form {
-    margin: 20px auto;
-    padding: 1em;
+    padding: 2em;
+    background-color: gray;
+    border-radius: 2px 2px 12px 12px;
 }
 
 form div + div {
