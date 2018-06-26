@@ -3,32 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Note Pro</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
+          integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
 <body class="">
 <div class="wrapper dark">
     <div class="mainContainer">
-        <div class="header">
-
-            <button type="button" class="newCreate" id="newCreate">Create new note</button>
-
-            <select class="styleSelector" id="styleSelector">
-                <option value="white">Black & White Style</option>
-                <option value="darkseagreen ">Color Style</option>
-            </select>
+        <div class="note-area">
+            <div class="header">
+                <div>
+                    <button type="button" class="btn btn-normal" id="newCreate">Create new note</button>
+                </div>
+                <div id="styleSelector">
+                    <button type="button" class="btn btn-theme" id="light"><i class="far fa-sun"></i></button>
+                    <button type="button" class="btn btn-theme" id="dark"><i class="far fa-moon"></i></button>
+                </div>
+            </div>
+            <nav class="topNav">
+                <div class="sorting-buttons">
+                    <button class="btn btn-normal" id="sortByFinishedDate">By finish Date</button>
+                    <button class="btn btn-normal" id="sortByCreatedDate">By created Date</button>
+                    <button class="btn btn-normal" id="sortByImportance">By importance</button>
+                </div>
+                <div class="finished-buttons">
+                    <button id="showFinished" class="btn btn-normal">Show finished</button>
+                </div>
+            </nav>
+            <hr>
+            <div class="view-notes-area" id="listContainer"></div>
         </div>
-
-        <nav class="topNav">
-            <button id="sortByFinishedDate">By finish Date</button>
-            <button id="sortByCreatedDate">By created Date</button>
-            <button id="sortByImportance">By importance</button>
-
-            <button id="showFinished">Show finished</button>
-        </nav>
-        <hr>
-
-        <div class="view-notes-area" id="listContainer"></div>
-
     </div>
 
     <div class="modal-wrapper">

@@ -11,26 +11,10 @@
     transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
 }
 
-.dot1 {
-    height: 12px;
-    width: 12px;
-    background-color: lightcoral;
-    border-radius: 50%;
-    display: inline-block;
-}
-
-.dot2 {
+.dot {
     height: 12px;
     width: 12px;
     background-color: lightgrey;
-    border-radius: 50%;
-    display: inline-block;
-}
-
-.dot3 {
-    height: 12px;
-    width: 12px;
-    background-color: lightgreen;
     border-radius: 50%;
     display: inline-block;
 }

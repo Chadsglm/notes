@@ -2,9 +2,9 @@ const editTemplate = `
     <div class="container">
 
         <div class="top">
-            <span class="dot1"></span>
-            <span class="dot2"></span>
-            <span class="dot3"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
         </div>
     
         <div class="modelContent">
@@ -12,12 +12,12 @@ const editTemplate = `
               <input type="hidden" id="id" value="{{_id}}">
               <div>
                 <label class="model-label">Title</label>
-                <input required id="title" value="{{title}}" placeholder="Write to Your Note Title">
+                <input   id="title" value="{{title}}" placeholder="Write to Your Note Title">
               </div>
           
               <div>
                 <label class="model-label">Description</label>
-                <textarea required id="add-description" rows="4" cols="50" placeholder="Write to Your Note">{{description}}</textarea>
+                <textarea   id="add-description" rows="4" cols="50" placeholder="Write to Your Note">{{description}}</textarea>
               </div>
   
               <div class="stars" data-rating="3">
@@ -31,7 +31,7 @@ const editTemplate = `
                 
               <div>
                 <label class="model-label">Finish to</label>
-                <input required id="date" type="date" value="{{formatDate plannedDate 'DD.MM.YYYY'}}">
+                <input   id="date" type="date" value="{{formatDate plannedDate 'DD.MM.YYYY'}}">
               </div>
           
               <div>

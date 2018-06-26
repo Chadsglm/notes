@@ -1,11 +1,61 @@
 .dark{
-    background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/northernlights.jpg);
+    background: #460934;
     height: 100vh;
     width: 100%;
     margin: 0px 0px;
     padding: 0px 0px;
 }
 
-.dark .mainContainer{
-    background: darkgray;
+.dark .btn-normal{
+    min-width: 100px;
+    background: #531140;
+    border: 2px solid white;
 }
+
+.dark .btn-normal:hover, .btn-theme:hover{
+    background: #670f53;
+}
+
+.dark .btn-theme{
+    min-width: 40px;
+    background: #531140;
+    border: 2px solid white;
+}
+
+.dark .note-area{
+    background: #531140;
+    border-radius: 4px;
+    padding: 20px 20px;
+
+}
+
+.dark .note-container{
+    background: #670f53;
+    padding-bottom: 20px;
+    margin-top: 20px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    color:white;
+    font-size: 12px;
+}
+
+.dark .count {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 12px;
+    color: white;
+}
+
+.dark details{
+    border-bottom: 1px solid white;
+}
+
+.dark .btn{
+    border-radius: 25px;
+    color: white;
+    height: 34px;
+    align-self: center;
+    cursor: pointer;
+}
+

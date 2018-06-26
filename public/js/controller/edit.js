@@ -1,97 +1,126 @@
-function delegatedEditViewEditClick(event){
-  event.stopPropagation();
-  if(event.target.classList.contains("saveButton")) {
-    let note = extractNote();
 
-    let rest = new RestClient();
-    rest.getNoteById(note._id)
-        .then(noteItem => {
-          if(noteItem && noteItem._id){
-            rest.updateNote(note)
+(function (){
+  "use strict";
+
+    class NoteDetail{
+
+      constructor(){
+
+      }
+
+      delegatedEditViewEditClick(event){
+        event.stopPropagation();
+        if(event.target.classList.contains("saveButton")) {
+          let note = extractNote();
+
+          let rest = new RestClient();
+          rest.getNoteById(note._id)
+          .then(noteItem => {
+
+            if(noteItem && noteItem._id){
+              console.log('idyim ben 1', noteItem);
+              rest.updateNote(note)
+              .then(() => {
+                this.refreshModal({});
+                main();
+              })
+            }
+            else {
+              console.log('idyim ben 22', validateNote(note), note);
+              delete note._id;
+              if(validateNote(note)){
+                rest.addNote(note)
                 .then(() => {
-                  refreshModal({});
-                  main();
+                  this.refreshModal({});
+                  this.main();
                 })
+              }
+            }
+          })
+        }
+        if(event.target.id == "cancelModal") {
+          const modal = findByClass('modal');
+          modal.classList.toggle("show-modal");
+        }
+      }
+
+      refreshModal(note) {
+        let template = Handlebars.compile(editTemplate);
+        let renderedListHtml = template(note);
+
+        // add rendered html to the dom
+        setHtml(".modal", renderedListHtml);
+        const modal = findByClass('modal');
+        modal.classList.toggle("show-modal");
+        if(modal.classList.contains("show-modal")) {
+          this.starRating();
+        }
+      }
+
+      validateNote(note){
+        if(note.description && note.title && note.plannedDate != 'Invalid Date') {
+          return true;
+        }
+        return false;
+      }
+
+      extractNote(){
+        let importance = findByClass('stars');
+        importance =  importance ? importance.dataset.rating : 3;
+        let selectedStars = [false, false, false, false, false];
+        selectedStars = selectedStars.map((item , i ) => (i+1 <= parseInt(importance)) ? true : false );
+
+        let note = new Note(
+            findById('id').value,
+            findById('title').value,
+            findById('add-description').value,
+            new Date(),
+            new Date(findById('date').value),
+            new Date(),
+            selectedStars,
+            false
+        )
+
+        return note;
+      }
+
+      starRating () {
+        this.addListeners();
+        this.setRating();
+      }
+
+      addListeners() {
+        let stars = document.querySelectorAll('.editStar');
+        [].forEach.call(stars, function(star, index) {
+
+          star.addEventListener('click', (function(idx) {
+            document.querySelector('.stars').setAttribute('data-rating', ++idx);
+            setRating();
+          }).bind(window, index));
+        });
+
+      }
+
+      setRating() {
+        var stars = document.querySelectorAll('.editStar');
+        var rating = parseInt(
+            document.querySelector('.stars').getAttribute('data-rating'));
+        [].forEach.call(stars, function(star, index) {
+          if (rating > index) {
+            star.classList.add('rated');
+          } else {
+            star.classList.remove('rated');
           }
-          else {
-            rest.addNote(note)
-                .then(() => {
-                  refreshModal({});
-                  main();
-                })
-          }
-        })
-  }
-  if(event.target.id == "cancelModal") {
-    const modal = findByClass('modal');
-    modal.classList.toggle("show-modal");
-  }
-}
+        });
+      }
 
-function extractNote(){
-    let importance = findByClass('stars');
-    importance =  importance ? importance.dataset.rating : 3;
-    let selectedStars = [false, false, false, false, false];
-    selectedStars = selectedStars.map((item , i ) => (i+1 <= parseInt(importance)) ? true : false );
 
-    let note = new Note(
-        findById('id').value || new Date().getTime(),
-        findById('title').value,
-        findById('add-description').value,
-        new Date(),
-        new Date(findById('date').value),
-        new Date(),
-        selectedStars,
-        false
-    )
-  return note;
-}
+      initializeListeners() {
+        addEventHandler(findById("modalContainer"), "click", this.delegatedEditViewEditClick.bind(this));
+      }
 
-function refreshModal(note) {
-
-  let template = Handlebars.compile(editTemplate);
-  let renderedListHtml = template(note);
-
-  // add rendered html to the dom
-  setHtml(".modal", renderedListHtml);
-  const modal = findByClass('modal');
-  modal.classList.toggle("show-modal");
-  if(modal.classList.contains("show-modal")) {
-    starRating();
-  }
-}
-
-function  starRating () {
-  addListeners();
-  setRating();
-}
-
-function addListeners() {
-  let stars = document.querySelectorAll('.editStar');
-  [].forEach.call(stars, function(star, index) {
-
-    star.addEventListener('click', (function(idx) {
-      document.querySelector('.stars').setAttribute('data-rating', ++idx);
-      setRating();
-    }).bind(window, index));
-  });
-
-}
-
-function setRating() {
-  var stars = document.querySelectorAll('.editStar');
-  var rating = parseInt(
-      document.querySelector('.stars').getAttribute('data-rating'));
-  [].forEach.call(stars, function(star, index) {
-    if (rating > index) {
-      star.classList.add('rated');
-    } else {
-      star.classList.remove('rated');
     }
-  });
-}
 
-// dom.ready
-addEventHandler(document, "DOMContentLoaded", function(event) {
-  addEventHandler(findById("modalContainer"), "click", delegatedEditViewEditClick);
-});
+    window.NoteApp = window.NoteApp || {};
+    window.NoteApp.NoteDetail = NoteDetail;
+})(window)

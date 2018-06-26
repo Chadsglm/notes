@@ -1,5 +1,5 @@
 "use strict";
-s
+
 function addEventHandler(domElement, eventName, handlerFunction) {
   domElement.addEventListener(eventName, handlerFunction);
 }
@@ -26,8 +26,7 @@ function saveToLocalStorage(key, value){
 }
 
 function getLocalStorageItem(item) {
-  const stringified = localStorage.getItem(item);
-  return JSON.parse(stringified);
+  return localStorage.getItem(item);
 }
 
 

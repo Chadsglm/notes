@@ -1,11 +1,60 @@
 .light{
-    background-image: url(https://www.wallpaperup.com/uploads/wallpapers/2013/12/15/196208/db243fd17963767a512cc1b1e56ed8f9-1400.jpg);
+    background: #e0e0e0;
     width: 100%;
     height: calc(100vh);
     margin: 0px 0px;
     padding: 0px 0px;
 }
 
-.light .mainContainer{
-    background: lightsteelblue;
+.light .btn-normal{
+    min-width: 100px;
+    background: #eeeeee;
+    border: 2px solid white;
+}
+
+.light .btn-normal:hover, .btn-theme:hover{
+    background: #f5f5f5;
+}
+
+.light .btn-theme{
+    min-width: 40px;
+    background: #eeeeee;
+    border: 2px solid white;
+}
+
+.light .note-area{
+    background: #eeeeee;
+    border-radius: 4px;
+    padding: 20px 20px;
+
+}
+
+.light .note-container{
+    background: #f5f5f5;
+    padding-bottom: 20px;
+    margin-top: 20px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    color: #424242;
+    font-size: 12px;
+}
+
+.light .count {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 12px;
+    color: black;
+}
+
+.light details{
+    border-bottom: 1px solid black;
+}
+
+.light .btn{
+    border-radius: 25px;
+    color: black;
+    height: 34px;
+    align-self: center;
+    cursor: pointer;
 }

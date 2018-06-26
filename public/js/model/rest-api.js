@@ -1,50 +1,70 @@
-class RestClient {
+(function (window){
+  class RestClient {
+    constructor(url = '/note'){
+      this.url= url;
+    }
 
-  constructor(url = '/note'){
-    this.url= url;
+    getAllNote(callback) {
+      fetch(this.url)
+      .then(result => result.json())
+      .then(result => {
+        callback(result.data)
+      });
+    }
+
+    getNoteById(id, callback) {
+      fetch(this.url + '/' + id)
+      .then(result => result.json())
+      .then(result => {
+        callback(result.data)
+      });
+    }
+
+    addNote(note, callback) {
+      fetch(this.url, {
+        body: JSON.stringify(note),
+        headers: {
+          'content-type': 'application/json'
+        },
+        method: 'POST'
+      })
+      .then(result => result.json())
+      .then(result => {
+        callback(result.data)
+      });
+    }
+
+    updateNote(note, callback){
+      fetch(this.url + '/' + note._id, {
+        body: JSON.stringify(note),
+        headers: {
+          'content-type': 'application/json'
+        },
+        method: 'PUT'
+      })
+      .then(result => result.json())
+      .then(result => {
+        callback(result.data)
+      });
+    }
+
+    deleteNote(id, callback) {
+      fetch(this.url + '/' + id, {
+        method: 'DELETE'
+      })
+      .then(result => result.json())
+      .then(result => {
+        callback(result.data)
+      });
+    }
+
   }
 
-  async getAllNote() {
-    let response = await fetch(this.url);
-    let data = await response.json()
+  window.NoteApp = window.NoteApp || {};
+  window.NoteApp.RestClient = RestClient;
 
-    return data.data;
-  }
 
-  async getNoteById(id) {
-    let response = await fetch(this.url + '/' + id);
-    let data = await response.json()
+})(window)
 
-    return data.data;
-  }
 
-  async  addNote(note) {
-    return await fetch(this.url, {
-      body: JSON.stringify(note),
-      headers: {
-        'content-type': 'application/json'
-      },
-      method: 'POST'
-    })
-    .then(response => response.json())
-  }
-
-  async updateNote(note){
-    return await fetch(this.url + '/' + note._id, {
-      body: JSON.stringify(note),
-      headers: {
-        'content-type': 'application/json'
-      },
-      method: 'PUT'
-    })
-    .then(response => response.json())
-  }
-
-  async deleteNote(id) {
-    return await fetch(this.url + '/' + id, {
-      method: 'DELETE'
-    })
-    .then(response => response.json())
-  }
-}
 
