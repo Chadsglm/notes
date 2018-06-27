@@ -1,4 +1,4 @@
-(function (window){
+const RestApi = (function (window){
   class RestClient {
     constructor(url = '/note'){
       this.url= url;
@@ -60,8 +60,7 @@
 
   }
 
-  window.NoteApp = window.NoteApp || {};
-  window.NoteApp.RestClient = RestClient;
+ return new RestClient();
 
 
 })(window)

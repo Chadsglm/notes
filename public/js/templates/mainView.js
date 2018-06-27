@@ -10,13 +10,7 @@ const mainTemplate = `
                 <div class="noteTitle">{{title}}</div>
                 
                 <div class="noteImportance">
-                    {{#each importance}}
-                        {{#if this}}
-                          <span class="star rated" >&nbsp;</span>
-                          {{else}}
-                          <span class="star">&nbsp;</span>
-                        {{/if}} 
-                  {{/each}}
+                    {{stars importance}}
                 </div>
             </div>
             <div class="bottom-line">

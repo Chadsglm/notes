@@ -1,20 +1,14 @@
 # Note block
 
-
-  - Import and save files from GitHub
-  - Then **Run** easly
-
-You can also:
-  - Create new note then follow your notes
-  - Easly sorting your notes
-  - You can see your finished notes
-  - You can edit your note
-  - If you have many notes, don't worry you can delete easly
+Features:
+  - Create, Edit, Updagte and Delete notes
+  - Sort by created date due date and importance
+  - Filter finished Notes
 
 
 ### Tech
 
-I uses a number of open source projects to work properly:
+Following technologies are used:
 
 * [HTML] - creating web pages
 * [CSS] - describes the style of an HTML document
@@ -29,30 +23,21 @@ I uses a number of open source projects to work properly:
 
 ### Installation
 
-Notes requires [notes](https://github.com/kuzeysg/notes) to run.
+* Checkout project into your local file. 
+* run ```git checkout https://github.com/kuzeysg/notes```
+* cd into notes file
+* run ```npm install```
+* run ```npm start```
+
+* Now you can checkout the project at localhost:3000
 
 Install the project and start the server.
 
-```sh
-$ cd notes
-$ npm install 
-$ npm start
-```
 
-
-### Todos
-
- - Write MORE Notes
- - Easy Shorting Notes 
- - Add Night Mode
- - Create and Edit Note
-  
  
 License
 ----
 
 MIT
 
-
-**Free Notes, Hell Yeah!**
 

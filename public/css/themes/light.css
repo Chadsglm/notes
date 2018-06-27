@@ -12,7 +12,7 @@
     border: 2px solid white;
 }
 
-.light .btn-normal:hover, .btn-theme:hover{
+.light .btn-normal:hover, .light .btn-theme:hover{
     background: #f5f5f5;
 }
 

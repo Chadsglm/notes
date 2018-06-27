@@ -19,19 +19,16 @@ const editTemplate = `
                 <label class="model-label">Description</label>
                 <textarea   id="add-description" rows="4" cols="50" placeholder="Write to Your Note">{{description}}</textarea>
               </div>
-  
-              <div class="stars" data-rating="3">
-                <label class="model-label" id="importance">Importance</label>
-                <span class="star editStar"></span>
-                <span class="star editStar"></span>
-                <span class="star editStar"></span>
-                <span class="star editStar"></span>
-                <span class="star editStar"></span>
+               <div>
+                  <label class="model-label" id="importance">Importance</label>
+                  <select class="stars" data-rating="3">
+                      {{ select importance}}
+                  </select> 
               </div>
                 
               <div>
-                <label class="model-label">Finish to</label>
-                <input class="modal-date" id="date" type="date" value="{{formatDate plannedDate 'DD.MM.YYYY'}}">
+                <label class="model-label">Finish to</label> 
+                <input class="modal-date" id="date" type="date" value="{{formatDate plannedDate 'YYYY-MM-DD'}}">
               </div>
           
               <div class="modalButtons">

@@ -1,43 +1,38 @@
-(function (){
-  "use strict";
+const NoteDetail = (function (){
 
     class NoteDetail{
 
       constructor(){
-
+        this.rest = RestApi;
+        this.initializeListeners();
       }
+
 
       delegatedEditViewEditClick(event){
         event.stopPropagation();
-        if(event.target.classList.contains("saveButton")) {
-          let note = this.extractNote();
-
-          let rest = new RestClient();
-          rest.getNoteById(note._id)
-          .then(noteItem => {
-
+        if(event.target.classList.contains("save-button")) {
+          this.note = this.extractNote();
+          this.rest.getNoteById(this.note._id, noteItem =>{
             if(noteItem && noteItem._id){
-              rest.updateNote(note)
-              .then(() => {
+              this.rest.updateNote(this.note, (res) => {
                 this.refreshModal({});
-                this.main();
+                this.noteList.getInitialData();
               })
             }
             else {
-              delete note._id;
-              if(this.validateNote(note)){
-                rest.addNote(note)
-                .then(() => {
+              delete this.note._id;
+              if(this.validateNote(this.note)){
+                this.rest.addNote(this.note, (res) => {
                   this.refreshModal({});
-                  this.main();
-                })
+                  this.noteList.getInitialData();
+                });
               }
             }
           })
         }
         if(event.target.id == "cancelModal") {
           const modal = findByClass('modal');
-          modal.classList.toggle("show-modal");
+          modal.classList.remove("show-modal");
         }
       }
 
@@ -49,9 +44,7 @@
         setHtml(".modal", renderedListHtml);
         const modal = findByClass('modal');
         modal.classList.toggle("show-modal");
-        if(modal.classList.contains("show-modal")) {
-          this.starRating();
-        }
+
       }
 
       validateNote(note){
@@ -63,9 +56,7 @@
 
       extractNote(){
         let importance = findByClass('stars');
-        importance =  importance ? importance.dataset.rating : 3;
-        let selectedStars = [false, false, false, false, false];
-        selectedStars = selectedStars.map((item , i ) => (i+1 <= parseInt(importance)) ? true : false );
+        importance =  importance ? importance.value : 3;
 
         let note = new Note(
             findById('id').value,
@@ -74,48 +65,26 @@
             new Date(),
             new Date(findById('date').value),
             new Date(),
-            selectedStars,
+            importance,
             false
         )
 
         return note;
       }
 
-      starRating () {
-        this.addListeners();
-        this.setRating();
-      }
 
-      addListeners() {
-        let stars = document.querySelectorAll('.editStar');
-        [].forEach.call(stars, function(star, index) {
-
-          star.addEventListener('click', (function(idx) {
-            document.querySelector('.stars').setAttribute('data-rating', ++idx);
-            this.setRating();
-          }).bind(window, index));
-        }.bind(this));
-      }
-
-      setRating() {
-        var stars = document.querySelectorAll('.editStar');
-        var rating = parseInt(
-            document.querySelector('.stars').getAttribute('data-rating'));
-        [].forEach.call(stars, function (star, index) {
-          if (rating > index) {
-            star.classList.add('rated');
-          } else {
-            star.classList.remove('rated');
-          }
-        }.bind(this));
-      }
 
       initializeListeners() {
-        addEventHandler(findById("modalContainer"), "click", this.delegatedEditViewEditClick.bind(this));
+
+          document.addEventListener("DOMContentLoaded", (event) => {
+            this.noteList = NoteList;
+            addEventHandler(findById("modalContainer"), "click", this.delegatedEditViewEditClick.bind(this));
+          });
+
       }
 
     }
 
-    window.NoteApp = window.NoteApp || {};
-    window.NoteApp.NoteDetail = NoteDetail;
+    return new NoteDetail();
+
 })(window)

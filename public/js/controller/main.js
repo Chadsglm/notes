@@ -1,15 +1,17 @@
 
-(function (){
+const NoteList = (function (){
   "use strict";
 
   class NoteList{
     constructor () {
       this.notes = this.notes || [];
-      this.restClient = new window.NoteApp.RestClient();
+      this.restClient = RestApi;
+      this.noteDetails = NoteDetail;
       this.getInitialData();
       this.setListeners();
       this.switchStyle();
     }
+
 
     getInitialData(){
       this.notes = [];
@@ -107,8 +109,7 @@
         // find the note from model
         this.restClient
         .getNoteById(id, noteItem => {
-          const details = new window.NoteApp.NoteDetail();
-          details.refreshModal(noteItem);
+          this.noteDetails.refreshModal(noteItem);
         });
       }
       if(event.target.id == "deleteNote") {
@@ -119,30 +120,25 @@
         })
       }
       if(event.target.classList.contains("finishedNote")){
-        isFinished(event.target);
+        this.isFinished(event.target);
       }
     }
 
     openModal(e) {
-      const note = new window.NoteApp.NoteDetail();
-      note.refreshModal({});
+      this.noteDetails.refreshModal({});
     }
 
     isFinished (target){
       let id = event.target.dataset["id"];
       this.restClient
       .getNoteById(id, (noteItem) => {
-        noteItem.id = id;
+        noteItem._id = id;
         noteItem.isFinished = !noteItem.isFinished;
         this.restClient.updateNote(noteItem, (res) => this.getInitialData());
       })
     }
   }
 
-  window.NoteApp = window.NoteApp || {};
-  window.NoteApp.NoteList = NoteList;
-
-  new window.NoteApp.NoteList();
+  return new NoteList();
 
 })(window)
-

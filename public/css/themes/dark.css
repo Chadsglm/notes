@@ -12,7 +12,7 @@
     border: 2px solid white;
 }
 
-.dark .btn-normal:hover, .btn-theme:hover{
+.dark .btn-normal:hover, .dark .btn-theme:hover{
     background: #670f53;
 }
 
