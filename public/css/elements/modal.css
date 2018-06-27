@@ -39,7 +39,7 @@
 
 form {
     padding: 2em;
-    background-color: gray;
+    background-color: #BDBDBD;
     border-radius: 2px 2px 12px 12px;
 }
 
@@ -72,16 +72,32 @@ form div + div {
     content: '\2605';
 }
 
-#title, #add-description{
-    font: 1em sans-serif;
-    width: 300px;
-    box-sizing: border-box;
-    border: 1px solid #999;
-    border-radius: 3px;
+#title, #add-description, .modal-date, .modal-button{
+    display: inline-block;
+    font-weight: 500;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 25px;
+    color: black;
+    align-self: center;
+    cursor: pointer;
+    min-width: 100px;
+    background: #BDBDBD;
+    border: 2px solid white;
 }
 
-textarea {
-    vertical-align: top;
+#title, .modal-date, .modal-button{
+    height: 34px;
+}
+
+#title, #add-description{
+    width: 55%;
 }
 
 .top {
@@ -91,16 +107,9 @@ textarea {
     border-top-right-radius: 12px;
 }
 
-.save {
-    width: 200px;
-    position: relative;
-    right: auto;
-    box-shadow: 1px 2px #888888;
+.modalButtons{
+    display: flex;
+    justify-content: space-between;
 }
 
-.cancel{
-    width: 150px;
-    position: relative;
-    left: 150px;
-    box-shadow: 1px 2px #888888;
-}
+

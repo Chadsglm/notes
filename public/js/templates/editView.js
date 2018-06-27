@@ -31,13 +31,13 @@ const editTemplate = `
                 
               <div>
                 <label class="model-label">Finish to</label>
-                <input   id="date" type="date" value="{{formatDate plannedDate 'DD.MM.YYYY'}}">
+                <input class="modal-date" id="date" type="date" value="{{formatDate plannedDate 'DD.MM.YYYY'}}">
               </div>
           
-              <div>
-                <button type="button" id="saveButton" class="save saveButton">Save</button>
+              <div class="modalButtons">
+                <button type="button" id="saveButton" class="modal-button save-button">Save</button>
                 
-                <button class="cancel" id="cancelModal">Cancel</button>
+                <button type="button" id="cancelModal" class="modal-button cancel-button">Cancel</button>
               </div>
             </form>
         </div>

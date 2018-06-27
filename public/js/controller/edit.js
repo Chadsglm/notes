@@ -1,4 +1,3 @@
-
 (function (){
   "use strict";
 
@@ -11,24 +10,22 @@
       delegatedEditViewEditClick(event){
         event.stopPropagation();
         if(event.target.classList.contains("saveButton")) {
-          let note = extractNote();
+          let note = this.extractNote();
 
           let rest = new RestClient();
           rest.getNoteById(note._id)
           .then(noteItem => {
 
             if(noteItem && noteItem._id){
-              console.log('idyim ben 1', noteItem);
               rest.updateNote(note)
               .then(() => {
                 this.refreshModal({});
-                main();
+                this.main();
               })
             }
             else {
-              console.log('idyim ben 22', validateNote(note), note);
               delete note._id;
-              if(validateNote(note)){
+              if(this.validateNote(note)){
                 rest.addNote(note)
                 .then(() => {
                   this.refreshModal({});
@@ -95,25 +92,23 @@
 
           star.addEventListener('click', (function(idx) {
             document.querySelector('.stars').setAttribute('data-rating', ++idx);
-            setRating();
+            this.setRating();
           }).bind(window, index));
-        });
-
+        }.bind(this));
       }
 
       setRating() {
         var stars = document.querySelectorAll('.editStar');
         var rating = parseInt(
             document.querySelector('.stars').getAttribute('data-rating'));
-        [].forEach.call(stars, function(star, index) {
+        [].forEach.call(stars, function (star, index) {
           if (rating > index) {
             star.classList.add('rated');
           } else {
             star.classList.remove('rated');
           }
-        });
+        }.bind(this));
       }
-
 
       initializeListeners() {
         addEventHandler(findById("modalContainer"), "click", this.delegatedEditViewEditClick.bind(this));

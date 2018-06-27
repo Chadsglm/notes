@@ -19,8 +19,6 @@
       })
     }
 
-
-
     sortByLocalDatabase(){
       const sortedBy = JSON.parse(getLocalStorageItem('sortedBy')) || 'create';
       const filteredBy = JSON.parse(getLocalStorageItem('isFinished')) || false;
